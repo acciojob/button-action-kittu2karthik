@@ -1,29 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./../styles/App.css";
 
-const App = (props) => {
-  const paraRef = useRef(null);
+const App = () => {
+  const [isVisible, setIsVisible] = useState(false);
 
-  function handleClick() {
-    if (paraRef.current) {
-      const paragraph = paraRef.current;
-      if (paragraph.classList.contains("hide")) {
-        paragraph.classList.remove("hide");
-        paragraph.classList.add("show");
-      } else {
-        paragraph.classList.remove("show");
-        paragraph.classList.add("hide");
-      }
-    }
-  }
+  const handleClick = () => {
+    setIsVisible(!isVisible);
+  };
 
   return (
-    <div className="App" id="main">
-      <p id="para" className="hide" ref={paraRef}>
-        Hello, I've learnt to use the full-stack evaluation tool. This makes me
-        so happy
+    <div id="main">
+      <p
+        id="para"
+        className={isVisible ? "show" : "hide"}
+      >
+        Hello, I've learnt to use the full-stack evaluation tool. This makes me so happy
       </p>
-      <button id="click" onClick={handleClick}></button>
+      <button id="click" onClick={handleClick}>
+        Show Paragraph
+      </button>
     </div>
   );
 };
